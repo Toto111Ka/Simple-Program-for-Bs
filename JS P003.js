@@ -25,9 +25,9 @@ function ChooseExpenses () {
         let a = prompt("Please, etner your expenses inem this month", ''), 
             b = prompt("How much?", '');
         
-        if (typeof(a)=== 'string' && typeof(a) !=null && typeof(b) !=null
-            && a != '' && b != '' && a.length < 50){                
-             console.log("done")
+        if (typeof(a)=== 'string' && typeof(a) !=null && typeof(b) !=null && 
+                a != '' && b != '' && a.length < 50){                
+             console.log("done");
              appData.expenses[a]=b;
         } else {
              alert("Try Again");
@@ -71,22 +71,22 @@ ChooseExpenses();
 function choseOptExpenses () {
     let i = 0;
     do {
-        let a = prompt("Please, etner your expenses optional inem ", '');
+        let a = prompt("Please, etner your expenses optional item ", '');
         if (typeof(a)=== 'string' && typeof(a) !=null && a != '' && a.length < 50){
-            console.log("done")
+            console.log("done");
             appData.optionalExpenses[i+1]=a;
             i++;
         } else {
-            console.log("not have opt expenses");
-            appData.optionalExpenses["not have opt expenses"];
+            let c = "not have opt expenses";
+            appData.optionalExpenses[c]=a;
             break;
         }
     } 
     while (i < 3);
 }
-choseOptExpenses()
+choseOptExpenses();
 
-console.log(appData.optionalExpenses)
+console.log(appData.optionalExpenses);
 
 function detectDayBudget () {
     appData.moneyPerDay = (appData.budget / 30).toFixed();
@@ -102,7 +102,7 @@ function detectLevel () {
     }else if (appData.moneyPerDay > 2000) {
         console.log("High");
     }else {
-        console.log("Error")
+        console.log("Error");
     }
 }
 detectLevel ();
@@ -120,4 +120,5 @@ function checkSavings() {
     }
 }
 checkSavings();
+
 
