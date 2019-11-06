@@ -27,6 +27,15 @@
 //     bg: "red"
 // };
 
+//delete options.bool; // удаление свойства обьекта
+//console.log(options);
+
+// for (let key in options) {   //перечесление свойств со значениями
+//     console.log('Property ' + key + ' has vaule ' + options.key);
+// }
+
+// console.log(Object.keys(options).length); // количество ключей
+
 // let arr = [1, 2, 3, 4, 5];
 
 // arr.pop();          //удаляет 5ку с конца массива 

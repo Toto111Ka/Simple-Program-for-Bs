@@ -103,5 +103,5 @@ let appData = {
 
 console.log("Us program has: ");
 for (let key in appData){
-    console.log(key + ' ' + appData.prop);   
+    console.log(key + ' ' + appData.key);   
 }
