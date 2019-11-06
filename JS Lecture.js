@@ -79,3 +79,50 @@
 // }
 // console.log(arr);
 
+// ООП 
+
+// let soldier = {  //прототип
+//     health: 400,
+//     armor: 100
+// };
+
+// let john = {     //потомок
+//     health: 100
+// };
+
+// john.__proto__ = soldier;
+
+// console.log(john);
+// console.log(john.armor);
+
+// циклы и прочее 
+
+// for (let i = 0; i < 2; i++) {
+//     let a = prompt("Please, etner your expenses inem this month", ''), 
+//         b = prompt("How much?", '');
+
+//     if (typeof(a)=== 'string' && typeof(a) !=null && typeof(b) !=null
+//         && a != '' && b != '' && a.length < 50){
+//         console.log("done")
+//         appData.expenses[a]=b;
+//     } else {
+//          alert("Try Again");
+//          i-- ;
+//     }
+    
+// }
+
+// let i = 0;
+// while (i < 2) {
+//          let a = prompt("Please, etner your expenses inem this month", ''), 
+//              b = prompt("How much?", '');
+    
+//          if (typeof(a)=== 'string' && typeof(a) !=null && typeof(b) !=null
+//             && a != '' && b != '' && a.length < 50){
+//             console.log("done")
+//             appData.expenses[a]=b;
+//         } else {
+//              alert("Try Again");
+//              i-- ;
+//         }i++;
+// }
