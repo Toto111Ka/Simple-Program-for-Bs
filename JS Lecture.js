@@ -135,3 +135,45 @@
 //              i-- ;
 //         }i++;
 // }
+
+//Динамическая типизация
+
+//-to String
+// 1) 
+console.log(typeof(String(4)));
+// 2)
+console.log("ww" + 5);
+console.log('http://vk.com/catalog/' + 5);
+
+//-to Number
+// 1)
+console.log(typeof(Number("5")));
+// 2)
+console.log(typeof(5 + +'5'));
+// 3)
+console.log(typeof(parseInt('15px', 10)));
+
+let ans = +prompt("Hello?", '');
+
+//-to Boolean
+// types : 0, '', null, underfined, NaN
+
+// 1)
+let switcher = null;
+
+if (switcher) {
+    console.log("Working..");
+}
+
+switcher = 1;
+
+if (switcher) {
+    console.log("Working..");
+}
+// 2)
+console.log(typeof(Boolean('5')));
+// 3)
+console.log(typeof(!!'5'));
+
+let x = 5; 
+alert(x++);
