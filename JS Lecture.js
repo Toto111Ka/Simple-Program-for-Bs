@@ -138,42 +138,83 @@
 
 //Динамическая типизация
 
-//-to String
-// 1) 
-console.log(typeof(String(4)));
-// 2)
-console.log("ww" + 5);
-console.log('http://vk.com/catalog/' + 5);
+// //-to String
+// // 1) 
+// console.log(typeof(String(4)));
+// // 2)
+// console.log("ww" + 5);
+// console.log('http://vk.com/catalog/' + 5);
 
-//-to Number
-// 1)
-console.log(typeof(Number("5")));
-// 2)
-console.log(typeof(5 + +'5'));
-// 3)
-console.log(typeof(parseInt('15px', 10)));
+// //-to Number
+// // 1)
+// console.log(typeof(Number("5")));
+// // 2)
+// console.log(typeof(5 + +'5'));
+// // 3)
+// console.log(typeof(parseInt('15px', 10)));
 
-let ans = +prompt("Hello?", '');
+// let ans = +prompt("Hello?", '');
 
-//-to Boolean
-// types : 0, '', null, underfined, NaN
+// //-to Boolean
+// // types : 0, '', null, underfined, NaN
 
-// 1)
-let switcher = null;
+// // 1)
+// let switcher = null;
 
-if (switcher) {
-    console.log("Working..");
-}
+// if (switcher) {
+//     console.log("Working..");
+// }
 
-switcher = 1;
+// switcher = 1;
 
-if (switcher) {
-    console.log("Working..");
-}
-// 2)
-console.log(typeof(Boolean('5')));
-// 3)
-console.log(typeof(!!'5'));
+// if (switcher) {
+//     console.log("Working..");
+// }
+// // 2)
+// console.log(typeof(Boolean('5')));
+// // 3)
+// console.log(typeof(!!'5'));
 
-let x = 5; 
-alert(x++);
+// let x = 5; 
+// alert(x++);
+
+let box = document.getElementById('box'),
+    btn = document.getElementsByTagName('button'),
+    circle = document.getElementsByClassName('circle'),
+    heart = document.querySelectorAll('.heart'),
+    oneHeart = document.querySelector('.heart'),
+    wrapper = document.querySelector('.wrapper');
+
+box.style.backgroundColor = 'blue';
+btn[1].style.borderRadius = '100%';
+
+circle[0].style.backgroundColor = 'red';
+circle[1].style.backgroundColor = 'yellow';
+circle[2].style.backgroundColor = 'green';
+
+// for (let i = 0; i < heart.length; i++) {
+//     heart[i].style.backgroundColor = 'blue';
+// }
+
+// heart.forEach(function(item, i, hearts){
+//     item.style.backgroundColor = 'yellow';
+// });
+
+let div = document.createElement('div');
+    text = document.createTextNode('I was be here');
+
+div.classList.add('black');
+
+// document.body.appendChild(div);
+// wrapper.appendChild(div);
+
+// div.innerHTML = '<h1>Hello World!</h1>';
+div.textContent = 'Hellow World!'; 
+
+document.body.insertBefore(div, circle[0]);
+document.body.removeChild(circle[1]);
+wrapper.removeChild(heart[1]);
+
+document.body.replaceChild(btn[1], circle[1]);
+
+console.log(div);
