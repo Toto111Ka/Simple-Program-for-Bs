@@ -1,5 +1,6 @@
 var time, monye;
 
+document.getElementById('start');
 function start() {
     alert("Hello User!");
     monye = +prompt("Your monye for month?");
@@ -94,14 +95,8 @@ let appData = {
     }
 }; 
 
-// appData.ChooseExpenses();
-// appData.detectDayBudget();
-// appData.detectLevel();
-// appData.checkSavings();
-// appData.chooseOptExpenses();
-// appData.chooseIncome();
-
 console.log("Us program has: ");
 for (let key in appData){
     console.log(key + ' ' + appData.key);   
 }
+
