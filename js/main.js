@@ -5,16 +5,16 @@ let startBtn = document.getElementById('start'),
 	dayBudgetValue = document.getElementsByClassName('daybudget-value')[0],
 	expenses = document.getElementsByClassName('expenses'),
 	expensesVaule = document.getElementsByClassName('expenses-value')[0],
-	optionalExpensesVaule = document.getElementsByClassName('optionalexpenses-value')[0],
-    resultTable2 = document.getElementsByClassName('income income-value level level-value monthsavings monthsavings-value'),
-    resultTable3 = document.getElementsByClassName('optionalexpenses  yearsavings yearsavings-value');
-    resultTable1 = resultTable2;
-    resultTable2 = resultTable3;
+    optionalExpensesVaule = document.getElementsByClassName('optionalexpenses-value')[0],
+    levelValue = document.getElementsByClassName('level-value')[0],
+    monthsavingsValue = document.getElementsByClassName('monthsavings-value')[0],
+    yearsavingValue = document.getElementsByClassName('yearsavings-value')[0],
+    incomeValue = document.getElementsByClassName('income-value')[0],
     expensesItem = document.getElementsByClassName('expenses-item');
     optionalExpenses = document.getElementsByClassName('optionalexpenses-item');
     btnAccept = document.getElementsByTagName('button')[0];
 	btnCalculate = document.getElementsByTagName('button')[2];
-	bntAccept1 = document.getElementsByTagName('button')[1];
+	btnAccept1 = document.getElementsByTagName('button')[1];
 	input = document.querySelectorAll('.choose-income, .choose-sum, .choose-percent, .checksavings, .year-value, .day-value, .month-value');
 
 startBtn.addEventListener('click', function() {
@@ -50,23 +50,85 @@ btnAccept.addEventListener('click', function() {
 	expensesVaule.textContent = sum;
 });
 
-btnAccept1.addEventListener('click', function(){
+btnAccept1.addEventListener('click', function() {
 	let i = 0;
 	do {
 		let a = optionalExpenses[i].value; //("Please, etner your expenses optional item ", '');
 		if (typeof(a)=== 'string' && typeof(a) !=null && a != '' && a.length < 50){
 			console.log("done");
 			appData.optionalExpenses[i+1]=a;
-			i++; 
+            i++;
+            optionalExpensesVaule.textContent += appData.optionalExpenses[i] + ' '; 
 		} else {
-			let c = "not have opt expenses";
+			let c = " not ";
 			appData.optionalExpenses[c]=a;
 			break;
 		}
 	} 
 	while (i < optionalExpenses.length);
-	optionalExpensesVaule.textContent += appData.optionalExpenses[i] + ' ';
 });
+
+btnCalculate.addEventListener('click', function() {
+    if (appData.moneyPerDay != undefined) {
+
+        appData.moneyPerDay = (appData.budget / 30).toFixed();
+        dayBudgetValue.textContent = appData.moneyPerDay;
+    
+        if(appData.moneyPerDay < 100) {
+            levelValue.textContent = "Min";
+        }else if (appData.moneyPerDay > 100 && appData.moneyPerDay < 2000) {
+            levelValue.textContent = "Midle";
+        }else if (appData.moneyPerDay > 2000) {
+            levelValue.textContent = "High";
+        }else {
+            levelValue.textContent = "Error";
+        }
+    } else {
+        dayBudgetValue.textContent = "Please, enter your budget.";
+        dayBudgetValue.style.color = 'red';
+    }
+});
+
+input[0].addEventListener('change', function() {
+    let item = input[0].value;  //prompt("What will brought this is income? Please, write this is through comma.", '')
+    appData.income = item.split(', ');
+         // appData.income.push(prompt("Maybe do you want one more yet? "));
+         // appData.income.sort();
+    incomeValue.textContent = appData.income;
+});
+
+input[3].addEventListener('click', function() {
+    if (appData.savings == true){
+        appData.savings = false;
+    } else {
+        appData.savings = true;
+    };
+});
+
+input[1].addEventListener('input', function(){
+    if (appData.savings == true){
+        let sum = +input[1].value;
+            percent = +input[2].value;
+        appData.monthIncome = sum/100/12*percent;
+        appData.yearIncome = sum/100*percent;
+
+    monthsavingsValue.textContent = appData.monthIncome.toFixed(1);
+    yearsavingValue.textContent = appData.yearIncome.toFixed(1);
+    }
+});
+
+input[2].addEventListener('input', function(){
+    if (appData.savings == true){
+        let sum = +input[1].value;
+            percent = +input[2].value;
+        appData.monthIncome = sum/100/12*percent;
+        appData.yearIncome = sum/100*percent;
+
+    monthsavingsValue.textContent = appData.monthIncome.toFixed(1);
+    yearsavingValue.textContent = appData.yearIncome.toFixed(1);
+    }
+});
+
 
 let appData = {
     budget: money,
@@ -74,24 +136,15 @@ let appData = {
     expenses: {}, 
     optionalExpenses: {}, 
     income: {},
-    savings: true,
+    savings: false,
     ChooseExpenses: function() {
    
     },
     detectDayBudget: function() {
-        appData.moneyPerDay = (appData.budget / 30).toFixed();
-        alert("Budget per Day: " + appData.moneyPerDay);
+       
     },
     detectLevel: function() {
-        if(appData.moneyPerDay < 100) {
-            console.log("Min");
-        }else if (appData.moneyPerDay > 100 && appData.moneyPerDay < 2000) {
-            console.log("Midle");
-        }else if (appData.moneyPerDay > 2000) {
-            console.log("High");
-        }else {
-            console.log("Error");
-        }
+ 
     },
     checkSavings: function() {
         if (appData.savings == true) {
@@ -107,22 +160,7 @@ let appData = {
       
     },
     chooseIncome: function() {
-        for (i = 0; i < 3; i++) {
-        let item = prompt("What will brought this is income? Please, write this is through comma.", '');
-            if (typeof(item)=== 'string' && typeof(item) !=null && item != '' && item.length < 50){ 
-            console.log("done");  
-            appData.income = item.split(', ');
-            appData.income.push(prompt("Maybe do you want one more yet? "));
-            appData.income.sort();
-            i = 3;       
-        }else {
-            alert("Please, can you try again. ");
-            }
-        }
-        appData.income.forEach(function(item, i) {
-        i++;
-        alert(i + " Ways for additional Incoming: " + item );
-        });
+        
     }
 }; 
 
