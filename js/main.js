@@ -32,20 +32,6 @@ startBtn.addEventListener('click', function() {
 	input[6].value = new Date(Date.parse(time)).getDay();
 });
 
-startBtn.onclick = function(event) {
-     if (event.type == true) {
-        btnAccept.disable = false;
-        btnAccept1.disable  = false;
-        btnCalculate.disable = false;
-        input.disable = false;
-    } else { 
-        btnAccept.disable = true;
-        btnAccept1.disable  = true;
-        btnCalculate.disable = true;
-        input.disable = true;   
-    }
-};
-
 btnAccept.addEventListener('click', function() {
 	let sum = 0;
 	for (let i = 0; i < expensesItem.length; i++) {
@@ -111,18 +97,30 @@ input[0].addEventListener('change', function() {
     incomeValue.textContent = appData.income;
 });
 
-input[1].addEventListener('click', function() {
+input[3].addEventListener('click', function() {
     if (appData.savings == true){
         appData.savings = false;
     } else {
         appData.savings = true;
+    };
+});
+
+input[1].addEventListener('input', function(){
+    if (appData.savings == true){
+        let sum = +input[1].value;
+            percent = +input[2].value;
+        appData.monthIncome = sum/100/12*percent;
+        appData.yearIncome = sum/100*percent;
+
+    monthsavingsValue.textContent = appData.monthIncome.toFixed(1);
+    yearsavingValue.textContent = appData.yearIncome.toFixed(1);
     }
 });
 
 input[2].addEventListener('input', function(){
     if (appData.savings == true){
-        let sum = +input[2].value;
-            percent = +input[3].value;
+        let sum = +input[1].value;
+            percent = +input[2].value;
         appData.monthIncome = sum/100/12*percent;
         appData.yearIncome = sum/100*percent;
 
@@ -131,17 +129,6 @@ input[2].addEventListener('input', function(){
     }
 });
 
-input[3].addEventListener('input', function(){
-    if (appData.savings == true){
-        let sum = +input[2].value;
-            percent = +input[3].value;
-        appData.monthIncome = sum/100/12*percent;
-        appData.yearIncome = sum/100*percent;
-
-    monthsavingsValue.textContent = appData.monthIncome.toFixed(1);
-    yearsavingValue.textContent = appData.yearIncome.toFixed(1);
-    }
-});
 
 let appData = {
     budget: money,
@@ -149,6 +136,38 @@ let appData = {
     expenses: {}, 
     optionalExpenses: {}, 
     income: {},
-    savings: false
+    savings: false,
+    ChooseExpenses: function() {
+   
+    },
+    detectDayBudget: function() {
+       
+    },
+    detectLevel: function() {
+ 
+    },
+    checkSavings: function() {
+        if (appData.savings == true) {
+            let save = +prompt ("how much your savings?"),
+                precent = +prompt ("which precent?");
+            
+    
+            appData.monthIncome = save/100/12*precent;
+            alert("Your money per month in deposit: " + appData.monthIncome);
+        }
+    },
+    chooseOptExpenses: function() {
+      
+    },
+    chooseIncome: function() {
+        
+    }
 }; 
+
+console.log("Us program has: ");
+for (let key in appData){
+    console.log(key + ' ' + appData.key);   
+}
+
+
 
