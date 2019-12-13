@@ -13,13 +13,17 @@ let startBtn = document.getElementById('start'),
     expensesItem = document.getElementsByClassName('expenses-item');
     optionalExpenses = document.getElementsByClassName('optionalexpenses-item');
     btnAccept = document.getElementsByTagName('button')[0];
-	btnCalculate = document.getElementsByTagName('button')[2];
 	btnAccept1 = document.getElementsByTagName('button')[1];
+	btnCalculate = document.getElementsByTagName('button')[2];
 	input = document.querySelectorAll('.choose-income, .choose-sum, .choose-percent, .checksavings, .year-value, .day-value, .month-value');
 
+    btnAccept.disabled = true;
+    btnAccept1.disabled = true;
+    btnCalculate.disabled = true;
+    
 startBtn.addEventListener('click', function() {
 	alert("Hello User!");
-    time = +prompt("Please enter date YYYY-MM-DD");
+    time = prompt("Please enter date YYYY-MM-DD");
     money = +prompt("Your money for month?");
      while(isNaN(money) || money == "" || money == null) { // isNaN проверка на строку 
         money = +prompt("Your monye for month?");
@@ -29,7 +33,11 @@ startBtn.addEventListener('click', function() {
 	budgetValue.textContent = money.toFixed(); 
 	input[4].value = new Date(Date.parse(time)).getFullYear();
 	input[5].value = new Date(Date.parse(time)).getMonth() + 1;
-	input[6].value = new Date(Date.parse(time)).getDay();
+    input[6].value = new Date(Date.parse(time)).getDay();
+    
+    btnAccept.disabled = false;
+    btnAccept1.disabled = false;
+    btnCalculate.disabled = false;
 });
 
 btnAccept.addEventListener('click', function() {
@@ -69,11 +77,10 @@ btnAccept1.addEventListener('click', function() {
 });
 
 btnCalculate.addEventListener('click', function() {
-    if (appData.moneyPerDay != undefined) {
-
-        appData.moneyPerDay = (appData.budget / 30).toFixed();
+    appData.moneyPerDay = (appData.budget / 30).toFixed();
         dayBudgetValue.textContent = appData.moneyPerDay;
-    
+
+    if (appData.moneyPerDay != undefined) {
         if(appData.moneyPerDay < 100) {
             levelValue.textContent = "Min";
         }else if (appData.moneyPerDay > 100 && appData.moneyPerDay < 2000) {
@@ -97,18 +104,18 @@ input[0].addEventListener('change', function() {
     incomeValue.textContent = appData.income;
 });
 
-input[3].addEventListener('click', function() {
+input[1].addEventListener('click', function() {
     if (appData.savings == true){
         appData.savings = false;
     } else {
         appData.savings = true;
-    };
+    }
 });
 
-input[1].addEventListener('input', function(){
+input[2].addEventListener('input', function(){
     if (appData.savings == true){
-        let sum = +input[1].value;
-            percent = +input[2].value;
+        let sum = +input[2].value;
+            percent = +input[3].value;
         appData.monthIncome = sum/100/12*percent;
         appData.yearIncome = sum/100*percent;
 
@@ -117,10 +124,10 @@ input[1].addEventListener('input', function(){
     }
 });
 
-input[2].addEventListener('input', function(){
+input[3].addEventListener('input', function(){
     if (appData.savings == true){
-        let sum = +input[1].value;
-            percent = +input[2].value;
+        let sum = +input[2].value;
+            percent = +input[3].value;
         appData.monthIncome = sum/100/12*percent;
         appData.yearIncome = sum/100*percent;
 
@@ -137,37 +144,6 @@ let appData = {
     optionalExpenses: {}, 
     income: {},
     savings: false,
-    ChooseExpenses: function() {
-   
-    },
-    detectDayBudget: function() {
-       
-    },
-    detectLevel: function() {
- 
-    },
-    checkSavings: function() {
-        if (appData.savings == true) {
-            let save = +prompt ("how much your savings?"),
-                precent = +prompt ("which precent?");
-            
-    
-            appData.monthIncome = save/100/12*precent;
-            alert("Your money per month in deposit: " + appData.monthIncome);
-        }
-    },
-    chooseOptExpenses: function() {
-      
-    },
-    chooseIncome: function() {
-        
-    }
 }; 
 
-console.log("Us program has: ");
-for (let key in appData){
-    console.log(key + ' ' + appData.key);   
-}
-
-
-
+console.log(input);
