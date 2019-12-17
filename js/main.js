@@ -48,14 +48,13 @@ btnAccept.addEventListener('click', function() {
 
 		if (typeof(a)=== 'string' && typeof(a) !=null && typeof(b) !=null && 
 				a != '' && b != '' && a.length < 50){                
-			 console.log("done");
 			 appData.expenses[a]=b;
 			 sum+= +b;
 		} else {
 			 i-- ;
 		}  
 	}
-	expensesVaule.textContent = sum;
+    expensesVaule.textContent = sum;
 });
 
 btnAccept1.addEventListener('click', function() {
@@ -77,7 +76,7 @@ btnAccept1.addEventListener('click', function() {
 });
 
 btnCalculate.addEventListener('click', function() {
-    appData.moneyPerDay = (appData.budget / 30).toFixed();
+        appData.moneyPerDay = ((appData.budget - +expensesVaule.textContent)/ 30).toFixed();
         dayBudgetValue.textContent = appData.moneyPerDay;
 
     if (appData.moneyPerDay != undefined) {
